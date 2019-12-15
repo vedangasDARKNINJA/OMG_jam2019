@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 03f59227c2e3aae4f9004af6f5677311
+guid: 32097961a06491746b2cc7187efaf790
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2568837401350651815
-    second: CampFireFinished_0
+      213: 1098286324429101383
+    second: Fire_0
   - first:
-      213: -5784929331180331738
-    second: CampFireFinished_1
+      213: 7419590508823533442
+    second: Fire_1
   - first:
-      213: 6703503656626188089
-    second: CampFireFinished_2
+      213: 2333874723133794383
+    second: Fire_2
   - first:
-      213: -836580246522959223
-    second: CampFireFinished_3
-  - first:
-      213: -6237535784788995661
-    second: CampFireFinished_4
+      213: 6211036013863027259
+    second: Fire_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -62,7 +59,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -125,106 +122,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CampFireFinished_0
+      name: Fire_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 40
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 070d5a388ec629542948a51b117a7ea9
-      internalID: 2568837401350651815
+      spriteID: 6bad4dee7b22445438c824348f7d764c
+      internalID: 1098286324429101383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CampFireFinished_1
+      name: Fire_1
       rect:
         serializedVersion: 2
-        x: 72
+        x: 77
         y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 41
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 028463f128f2d1146a0e320f5cca7132
-      internalID: -5784929331180331738
+      spriteID: 21bdcb2432cac354281bb643cd4a89a2
+      internalID: 7419590508823533442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CampFireFinished_2
+      name: Fire_2
       rect:
         serializedVersion: 2
-        x: 136
+        x: 165
         y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 31
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b032d65822db494f856ca8f88f7c674
-      internalID: 6703503656626188089
+      spriteID: 7a9f3a8b082c2cc49ada3f82ab833a67
+      internalID: 2333874723133794383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CampFireFinished_3
+      name: Fire_3
       rect:
         serializedVersion: 2
-        x: 200
+        x: 246
         y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 25
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 637ba2276dadf2745a2b8472b76e52de
-      internalID: -836580246522959223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CampFireFinished_4
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7822ba0f966658f408cabe6787f1a631
-      internalID: -6237535784788995661
+      spriteID: 20fc72435b9d38140a96c33a6ace0f22
+      internalID: 6211036013863027259
       vertices: []
       indices: 
       edges: []
