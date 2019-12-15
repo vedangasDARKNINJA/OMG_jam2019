@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
         viewportSize.y *= viewPortFactor.y;
         if( followX)
         {
-            if(Mathf.Abs(player.position.x - transform.position.x)> viewportSize.x*0.5f)
+            if(Mathf.Abs(player.position.x - transform.position.x ) > viewportSize.x*0.5f)
             {
                 targetPosition = player.position + CameraPosition;
                 if (!followY)
@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
             }
         }
         targetPosition.z = CameraPosition.z;
-        targetPosition.y = Mathf.Clamp(targetPosition.y, 0, targetPosition.y);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, 0, 3);
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref smoothingVelocity, smoothingTime);
         
     }
