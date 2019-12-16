@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float upthrust;
     public float horzSpeed;
     public float horzBackSpeed;
+    public float maxVelocity = 2f;
 
     private Vector2 speeds;
 
@@ -28,84 +29,102 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("player Start caled");
         rb = GetComponent<Rigidbody2D>();
+
         fuel = maxFuel;
+        fuelSlider = GameObject.FindGameObjectWithTag("FuelSlider").GetComponent<Slider>();
         fuelSlider.value = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float v = Input.GetAxisRaw("Vertical");
-        float h = Input.GetAxisRaw("Horizontal");
-        if(fuel>0)
+        if (GameManager.Instance.playerStarted && !GameManager.Instance.playerDead && !GameManager.Instance.playerRestart)
         {
-            extraFuelRate = false;
-            if(v>0)
+            float v = Input.GetAxisRaw("Vertical");
+            float h = Input.GetAxisRaw("Horizontal");
+            if (fuel > 0)
             {
-                if (transform.position.y < 2.5f)
+                extraFuelRate = false;
+                if (v > 0)
                 {
-                    speeds.y = upthrust;
-                    extraFuelRate = true;
+                    if (transform.position.y < 2.5f)
+                    {
+                        speeds.y = upthrust;
+                        extraFuelRate = true;
+                    }
+                    else
+                    {
+                        speeds.y = 0;
+                    }
+                }
+                else if(transform.position.y>=2.5)
+                {
+                    speeds.y = -10;
                 }
                 else
                 {
-                    speeds.y = 0;
+                    speeds.y = gravity;
                 }
-            }
-            else
-            {
-                speeds.y = gravity;
-            }
 
-            if(h>0)
-            {
-                speeds.x = horzSpeed;
-                extraFuelRate = true;
-            }
-            else if(transform.position.x > horzBounds.x+0.5f)
-            {
-                speeds.x = horzBackSpeed;
+                if (h > 0)
+                {
+                    speeds.x = horzSpeed;
+                    extraFuelRate = true;
+                }
+                else if (transform.position.x > horzBounds.x + 0.5f)
+                {
+                    speeds.x = horzBackSpeed;
+                }
+                else
+                {
+                    speeds.x = 0;
+                }
             }
             else
             {
                 speeds.x = 0;
+                speeds.y = gravity;
+                GameManager.Instance.playerDead = true;
             }
-        }
-        else
-        {
-            speeds.x = 0;
-            speeds.y = gravity;
         }
     }
 
     private void FixedUpdate()
     {
-        if(speeds.x == 0)
+        if (speeds.x == 0)
         {
             Vector2 vel = rb.velocity;
             vel.x = 0;
             rb.velocity = vel;
         }
-        if(speeds.y == 0)
+        if (speeds.y == 0)
         {
             Vector2 vel = rb.velocity;
             vel.y = 0;
             rb.velocity = vel;
         }
         rb.AddForce(speeds, ForceMode2D.Force);
+        Vector2 velo = rb.velocity;
+        velo.x = Mathf.Clamp(velo.x, -maxVelocity, maxVelocity);
+        rb.velocity = velo;
+
         Vector3 current = transform.position;
         current.x = Mathf.Clamp(current.x, horzBounds.x, horzBounds.y);
         current.y = Mathf.Clamp(current.y, current.y, 2.5f);
         transform.position = current;
-        if (fuel > 0)
+        if (GameManager.Instance.playerStarted && !GameManager.Instance.playerDead && !GameManager.Instance.playerRestart)
         {
-            fuel -= fuelRate * Time.fixedDeltaTime;
-            if(extraFuelRate)
+            if (fuel > 0)
             {
-                fuel -= fuelFactor*fuelRate * Time.fixedDeltaTime;
+                fuel -= fuelRate * Time.fixedDeltaTime;
+                if (extraFuelRate)
+                {
+                    fuel -= fuelFactor * fuelRate * Time.fixedDeltaTime;
+                }
+                fuelSlider.value = fuel / maxFuel;
             }
-            fuelSlider.value = fuel / maxFuel;
         }
     }
 
@@ -114,7 +133,18 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("PowerUp"))
         {
             fuel = maxFuel;
-            rb.AddForce(5 * Vector2.up, ForceMode2D.Impulse);
+            rb.AddForce(3 * Vector2.up, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            AudioManager.Instance.Play("Death");
+            GameManager.Instance.playerDead = true;
+            speeds.x = 0;
+            speeds.y = gravity;
         }
     }
 }

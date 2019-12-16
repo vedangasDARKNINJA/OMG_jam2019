@@ -16,18 +16,30 @@ public class DistanceCalculator : MonoBehaviour
     void Start()
     {
         distance = 0;
-        distanceText.text = distance.ToString();
+        distanceText.text = "Score: " + distance.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += speed * Time.deltaTime;
-        if (timer>thresh)
+        if(!GameManager.Instance.playerStarted)
         {
-            timer = 0;
-            distance++;
-            distanceText.text = distance.ToString();
+            distance = 0;
+            distanceText.text = "Score: " + distance.ToString();
+        }
+        if (GameManager.Instance.playerStarted && !GameManager.Instance.playerDead && !GameManager.Instance.playerRestart)
+        {
+            timer += speed * Time.deltaTime;
+            if (timer > thresh)
+            {
+                timer = 0;
+                distance++;
+                distanceText.text = "Score: "+distance.ToString();
+            }
+        }
+        else
+        {
+            GameManager.Instance.currScore = distance;
         }
     }
 }

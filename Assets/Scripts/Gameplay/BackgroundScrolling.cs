@@ -12,12 +12,15 @@ public class BackgroundScrolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
-
-        if(transform.position.x <= endX)
+        if (GameManager.Instance.playerStarted && !GameManager.Instance.playerDead && !GameManager.Instance.playerRestart)
         {
-            Vector3 pos = new Vector3(startX, transform.position.y,transform.position.z);
-            transform.position = pos;
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+
+            if (transform.position.x <= endX)
+            {
+                Vector3 pos = new Vector3(startX, transform.position.y, transform.position.z);
+                transform.position = pos;
+            }
         }
     }
 }
