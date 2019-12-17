@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Screen.SetResolution(1024, 768, false);
+        Screen.SetResolution(1024, 768, true);
     }
 
     void Start()
